@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Fantasy Football Calculator (PPR)</title>
+	<script>
+	
+	var intRegex = /^[0-9]*$/;
+	
+	function calcFantasyPoints(){
+	if(document.getElementById("passYD").value == ""){
+		var passYD = 0;
+	} else var passYD = document.getElementById("passYD").value;
+	
+	if(document.getElementById("passTD").value == ""){
+		var passTD = 0;
+	} else var passTD = document.getElementById("passTD").value;
+	
+	if(document.getElementById("passInt").value == ""){
+		var passInt = 0;
+	} else var passInt = document.getElementById("passInt").value;
+	
+	if(document.getElementById("rushYD").value == ""){
+		var rushYD = 0;
+	} else var rushYD = document.getElementById("rushYD").value;
+	
+	if(document.getElementById("rushTD").value == ""){
+		var rushTD = 0;
+	} else var rushTD = document.getElementById("rushTD").value;
+	
+	if(document.getElementById("rec").value == ""){
+		var rec = 0;
+	} else var rec = document.getElementById("rec").value;
+	
+	if(document.getElementById("recYD").value == ""){
+		var recYD = 0;
+	} else var recYD = document.getElementById("recYD").value;
+	
+	if(document.getElementById("recTD").value == ""){
+		var recTD = 0;
+	} else var recTD = document.getElementById("recTD").value;
+	
+	if(document.getElementById("twoPointConv").value == ""){
+		var twoPointConv = 0;
+	} else var twoPointConv = document.getElementById("twoPointConv").value;
+	
+	if(document.getElementById("fumblesLost").value == ""){
+		var fumblesLost = 0;
+	} else var fumblesLost = document.getElementById("fumblesLost").value;
+	
+	if(intRegex.test(passYD) == true && intRegex.test(passTD) == true && intRegex.test(passInt) == true && intRegex.test(rushYD) == true && 
+	intRegex.test(rushTD) == true && intRegex.test(rec) == true && intRegex.test(recYD) == true && intRegex.test(recTD) == true && 
+	intRegex.test(twoPointConv) == true && intRegex.test(fumblesLost) == true){
+			var fantasyPointsCalc = ((passYD * 0.04) + (passTD * 4) + (passInt * -2) + (rushYD * .1) + (rushTD * 6) + (rec * 1) + (recYD * .1) + (recTD * 6) + 
+			(twoPointConv * 2) + (fumblesLost * -2));
+			document.getElementById("fantasyPoints").value = fantasyPointsCalc.toFixed(2);
+			
+		}else alert("Invalid Input(s)!\nEnter an integer!");
+	}
+		
+	function reset() {
+		location.reload();
+	}
+	
+	</script>
+	<style>
+	
+	body{
+	background-color: navy;
+	color: white;
+	}
+	
+	.header{
+	font-family: consolas; 
+	color: white;
+	}
+	
+	form{
+	background-color: darkgrey;
+	color: navy;
+	width: 50%;
+	border-radius: 2%;
+	font-family: consolas; 
+	}
+	
+	#fantasyPoints{
+	background-color: rgb(226,239,218);
+	}
+	
+	input{
+	font-family: consolas; 
+	}
+	
+	a{
+	color: white;
+	}
+	
+ </style>
+ </head>
+ <body>
+ 
+	<a href="index.html">Home</a>
+	<a href="catchLinval.html">Catch Linval</a>
+	<a href="tableauFantasyFootball.html">Top 10 Fantasy</a>
+	<a href="tableauAdamThielen.html">Adam Thielen</a>
+	<a href="tableauStefonDiggs.html">Stefon Diggs</a>
+	<a href="tableauKirkCousins.html">Kirk Cousins</a>
+	
+ <br><h1 id="header">Fantasy Football Calculator (PPR)</h1>
+
+	<form id="fantasyForm" onsubmit="return false">
+		<table>
+			<br>
+			<tr>
+				<td align="right">Passing Yards:</td>
+				<td align="left"><input type="text" id="passYD" name="passYD" placeholder=0 /></td>
+			</tr>
+			<tr>
+				<td align="right">Passing Touchdowns: </td>
+				<td align="left"><input type="text" id="passTD" name="passTD" placeholder=0 /></td>
+			</tr>
+			<tr>
+				<td align="right">Passing Interceptions: </td>
+				<td align="left"><input type="text" id="passInt" name="passInt" placeholder=0 /></td>
+			</tr>
+			<tr>
+				<td align="right">Rushing Yards: </td>
+				<td align="left"><input type="text" id="rushYD" name="rushYD" placeholder=0 /></td>
+			</tr>
+			<tr>
+				<td align="right">Rushing Touchdowns: </td>
+				<td align="left"><input type="text" id="rushTD" name="rushTD" placeholder=0 /></td>
+			</tr>
+			<tr>
+				<td align="right">Receptions: </td>
+				<td align="left"><input type="text" id="rec" name="rec" placeholder=0 /></td>
+			</tr>
+			<tr>
+				<td align="right">Receiving Yards: </td>
+				<td align="left"><input type="text" id="recYD" name="recYD" placeholder=0 /></td>
+			</tr>
+			<tr>
+				<td align="right">Receiving Touchdowns: </td>
+				<td align="left"><input type="text" id="recTD" name="recTD" placeholder=0 /></td>
+			</tr>
+			<tr>
+				<td align="right">2-Point Conversions: </td>
+				<td align="left"><input type="text" id="twoPointConv" name="twoPointConv" placeholder=0 /></td>
+			</tr>
+			<tr>
+				<td align="right">Fumbles Lost: </td>
+				<td align="left"><input type="text" id="fumblesLost" name="fumblesLost" placeholder=0 /></td>
+			</tr>
+			<tr>
+				<td align="right">Fantasy Points: </td>
+				<td align="left"><input type="text" id="fantasyPoints" name="fantasyPoints" placeholder=0 readonly="" /></td>
+			</tr>
+		</table>
+		<br>
+			<button onclick="calcFantasyPoints()"><b>Calculate</b></button>
+			<button onclick="reset()"><b>Reset</b></button>
+	</form>
+ </body>
+</html>
